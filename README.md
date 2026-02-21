@@ -1,40 +1,59 @@
-# ASSA Abloy test
+# AaFrontendTest
 
-# Instructions
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
 
-## Pre-req
-- Fork the repository
-- Create a feature branch, named feature/FIRSTNAME-LASTNAME
-- Create an Angular application in the repo
+## Development server
 
-## Task
-- Implement a simple search and select history function according to the FIGMA link (https://www.figma.com/file/RjhfsxK7lKOreCO7nprhEc/AA---FrontEnd-test)
-- The search should use a public REST API of choice (https://www.openbrewerydb.org/documentation#search-breweries)
-    - A suggestion could be: https://api.openbrewerydb.org/breweries/search?page=1&per_page=5&query= (where you need to pass the search query as a string)
-    - See the docs here: ([Brewery API Docs](https://www.openbrewerydb.org/documentation/)).
-- Search for anything
-- Display partial search results in a list beneath the search field (5) and an option to show all (let's say that 10 is the maximum)
-- When making a selection the search value should be saved with date/timestamp beneath the search box, just like a search history.
-- The page should be responsive, so it should be adaptive for all devices/windows
-- The search history should be persisted in localStorage
-- The logo can be found in the assets folder
+To start a local development server, run:
 
-## What we will look at extra carefully
-- Reactive forms
-- Sanity checking
-- Design pattern
-- Component structuring
-- Folder structuring
-- HTML5 semantics, more complex SCSS logic (use of variables etc)
-- Unit tests (reasonable coverage )
+```bash
+ng serve
+```
 
-## Additional notes
-- Solve the task as far as you think is necessary.
-- When done push your branch and let us know it’s done, e.g. by a pull request.
-- branch name use your firstname_lastname
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## 🤖 AI Usage Policy
+## Code scaffolding
 
-* You are allowed to **research and learn from documentation or AI tools**.
-* **Directly using AI to write or submit code** will be considered a violation and may negatively impact evaluation.
-* The goal is to assess **your understanding, problem-solving, and coding style**.
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+
+```bash
+ng generate component component-name
+```
+
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+
+```bash
+ng generate --help
+```
+
+## Building
+
+To build the project run:
+
+```bash
+ng build
+```
+
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Running unit tests
+
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+
+```bash
+ng test
+```
+
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
+
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
