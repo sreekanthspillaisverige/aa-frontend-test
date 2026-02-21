@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@use './app/shared/styles/tokens' as *;
+@use './app/shared/styles/mixins' as *;
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $font-family;
+  color: $base-text-color;
+}
+
+* {
+  box-sizing: border-box;
+}
