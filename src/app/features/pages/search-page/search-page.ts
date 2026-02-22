@@ -20,6 +20,7 @@ import {
   tap,
 } from 'rxjs';
 import { isMeaningfulQuery, normalizeQuery } from '../../../core/utils/string.util';
+import { SEARCH_DEBOUNCE_MS } from '../../../core/utils/search-page.tokens';
 
 type UiState = 'idle' | 'loading' | 'ready' | 'error';
 
@@ -33,6 +34,7 @@ type UiState = 'idle' | 'loading' | 'ready' | 'error';
 export class SearchPage {
   private readonly api = inject(BreweryApi);
   private readonly history = inject(SearchHistory);
+  private readonly debounceMs = inject(SEARCH_DEBOUNCE_MS);
   readonly historyitems = this.history.items;
 
   readonly queryCtrl = new FormControl('', {
@@ -48,7 +50,7 @@ export class SearchPage {
   private readonly query$ = this.queryCtrl.valueChanges.pipe(
     startWith(this.queryCtrl.value),
     map((value) => normalizeQuery(value ?? '')),
-    debounceTime(300),
+    debounceTime(this.debounceMs),
     distinctUntilChanged(),
     tap(() => {
       this.selected.set(null);

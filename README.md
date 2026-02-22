@@ -43,6 +43,11 @@ To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use th
 ```bash
 ng test
 ```
+To execute unit tests with coverage
+
+```bash
+ng test --coverage
+```
 
 ## Running end-to-end tests
 
