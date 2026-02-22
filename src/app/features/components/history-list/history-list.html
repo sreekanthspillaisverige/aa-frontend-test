@@ -1,1 +1,23 @@
-<p>history-list works!</p>
+<section class="panel" aria-label="Search history panel">
+  <header class="panel-head">
+    <h2 class="panel-title">Search history</h2>
+  </header>
+  <ul class="history-list">
+    @for (item of items(); track item.id) {
+      <li class="history-item">
+        <div class="text">
+          <div class="label">{{ item.label }}</div>
+          <div class="time">{{ formatTime(item.createdAt) }}</div>
+        </div>
+        <button
+          class="delete-button"
+          aria-label="Delete search history item"
+          type="button"
+          (click)="remove(item.id)"
+        >
+          <img class="close-icon" src="/icons/close.svg" alt="" aria-hidden="true" />
+        </button>
+      </li>
+    }
+  </ul>
+</section>

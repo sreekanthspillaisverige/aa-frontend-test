@@ -1,0 +1,57 @@
+@use '../../../shared/styles/tokens' as *;
+
+.panel-head {
+  margin-bottom: $space-3;
+}
+
+.panel-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+  color: $base-text-color;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: $space-2;
+}
+
+.history-item {
+  display: grid;
+  grid-template-columns: 1fr 20px;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-2 $space-3;
+  border-radius: $border-radius;
+  background: $base-bg-color;
+  min-width: 0;
+  box-shadow: $base-box-shadow;
+  border: 1px solid $border-color-1;
+}
+
+.label {
+  font-size: 16px;
+  color: $text-color-1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.time {
+  font-size: 16px;
+  color: $text-color-1;
+}
+
+.delete-button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close-icon {
+  width: 16px;
+  height: 16px;
+}

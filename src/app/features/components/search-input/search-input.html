@@ -1,1 +1,29 @@
-<p>search-input works!</p>
+<div class="field">
+  <label for="search" class="sr-only">Search here...</label>
+  <div class="input-wrap" [class.loading]="isLoading()">
+    <input
+      id="search"
+      class="input"
+      type="text"
+      placeholder="Search here..."
+      [formControl]="control()"
+      (keydown)="onKeydown($event)"
+      autocomplete="off"
+      inputmode="search"
+    />
+    <div class="right">
+      @if (control().value.trim().length > 0) {
+        <button
+          class="clear-button"
+          type="button"
+          (click)="clearClicked()"
+          aria-label="Clear search"
+        >
+          <img class="close-icon" src="/icons/close.svg" alt="" aria-hidden="true" />
+        </button>
+      } @else {
+        <img class="search-icon" src="/icons/search.png" alt="" aria-hidden="true" />
+      }
+    </div>
+  </div>
+</div>

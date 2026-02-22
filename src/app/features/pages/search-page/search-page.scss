@@ -1,0 +1,127 @@
+@use '../../../shared/styles/tokens' as *;
+@use '../../../shared/styles/mixins' as *;
+
+.search-page {
+  padding: $space-6 0;
+  min-height: 100vh;
+  background: $bg-gradient;
+}
+
+.search-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.search-page::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: $bg-overlay;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.search-page.searching::before {
+  background: linear-gradient(180deg, $bg-top 0%, $bg-bottom 100%);
+}
+
+.search-page.searching::after {
+  opacity: 1;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  width: min(100% - 2 * #{$space-6}, #{$input-max-width});
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-5;
+
+  @include mobile {
+    gap: $space-3;
+  }
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+}
+
+.search-row {
+  width: 100%;
+  max-width: 430px;
+}
+
+app-search-input {
+  width: 100%;
+  max-width: 430px;
+}
+
+app-detail-view {
+  width: 100%;
+  max-width: 430px;
+}
+
+app-history-list {
+  width: 100%;
+  max-width: 430px;
+}
+
+.hint {
+  margin-top: 6px;
+  font-size: 12px;
+  opacity: 0.75;
+  text-align: left;
+  width: 100%;
+  max-width: 430px;
+}
+
+.empty-state {
+  color: $base-text-color;
+}
+
+.error-state {
+  color: #ec1e1e;
+}
+
+.empty-state,
+.error-state {
+  width: 100%;
+  max-width: 430px;
+  margin-top: 6px;
+  padding: 14px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+  background: $bg-color-1;
+}
+
+.search-container {
+  position: relative;
+}
+
+.suggestions-dropdown {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100%);
+  z-index: 20;
+  max-height: min(60vh, 420px);
+  overflow: auto;
+  opacity: 0;
+  transform: translateY(-4px) scale(0.99);
+  transform-origin: top;
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease;
+}
+
+.search-container .suggestions-dropdown {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}

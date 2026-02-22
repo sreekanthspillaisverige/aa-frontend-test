@@ -1,1 +1,15 @@
-<p>suggestions-list works!</p>
+<div class="panel">
+  @for (item of items(); track item.id) {
+    <button class="row" type="button" (click)="select(item)" aria-label="Select {{ item.name }}">
+      <span class="name">{{ item.name }}</span>
+      <span class="details">{{ formatLocation(item) }}</span>
+    </button>
+  }
+  @if (showAll() && items().length) {
+    <div class="see-all-wrapper">
+      <button class="see-all" type="button" (click)="seeAllResults()" aria-label="See all results">
+        See all results
+      </button>
+    </div>
+  }
+</div>

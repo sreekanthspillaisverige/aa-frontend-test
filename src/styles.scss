@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @use './app/shared/styles/tokens' as *;
 @use './app/shared/styles/mixins' as *;
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap";
 
 html,
 body {

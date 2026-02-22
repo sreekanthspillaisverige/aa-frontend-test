@@ -1,0 +1,66 @@
+@use '../../../shared/styles/tokens' as *;
+
+.panel {
+  background: $base-bg-color;
+  border: 1px solid $base-border-color;
+  border-radius: $border-radius;
+  box-shadow: $base-box-shadow;
+  overflow: hidden;
+}
+
+.row {
+  width: 100%;
+  padding: $space-3 $space-4;
+  display: grid;
+  gap: 2px;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.row + .row {
+  border-top: 1px solid $border-color-2;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 14px;
+  color: $text-color-1;
+}
+
+.details {
+  font-size: 12px;
+  color: $text-color-2;
+}
+
+.see-all-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: $space-3 $space-4;
+  border-top: 1px solid $border-color-2;
+}
+
+.see-all {
+  border: none;
+  background: rgba(196, 196, 196, 1);
+  color: rgba(78, 74, 74, 1);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.08);
+  }
+}
+
+.row + .see-all {
+  border-top: 1px solid $border-color-2;
+}

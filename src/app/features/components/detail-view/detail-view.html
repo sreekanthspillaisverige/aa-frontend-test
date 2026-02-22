@@ -1,1 +1,43 @@
-<p>detail-view works!</p>
+@if (brewery(); as brewery) {
+  <section class="card" aria-label="Brewery details">
+    <header class="card-header">
+      <h2 class="card-title">{{ brewery.name }}</h2>
+      <button
+        class="close-button"
+        type="button"
+        (click)="closeDetailView()"
+        aria-label="Close detail view"
+      >
+        <img class="close-icon" src="/icons/close.svg" alt="" aria-hidden="true" />
+      </button>
+    </header>
+    <div class="card-body">
+      <div class="row">
+        <span class="key">Type: </span>
+        <span class="value">{{ brewery.brewery_type || 'Not available' }}</span>
+      </div>
+      <div class="row">
+        <span class="key">Address: </span>
+        <span class="value">{{ formatAddress(brewery) }}</span>
+      </div>
+      <div class="row">
+        <span class="key">Country: </span>
+        <span class="value">{{ brewery.country || 'Not available' }}</span>
+      </div>
+      <div class="row">
+        <span class="key">Phone: </span>
+        <span class="value">{{ brewery.phone || 'Not available' }}</span>
+      </div>
+      <div class="row">
+        <span class="key">Website: </span>
+        <span class="value">
+          @if (brewery.website_url) {
+            <a [href]="brewery.website_url" target="_blank">{{ brewery.website_url }}</a>
+          } @else {
+            Not available
+          }
+        </span>
+      </div>
+    </div>
+  </section>
+}

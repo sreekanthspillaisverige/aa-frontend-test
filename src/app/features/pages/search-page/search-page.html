@@ -1,1 +1,40 @@
-<p>search-page works!</p>
+<section class="search-page" [class.searching]="isSearching()" aria-label="Search for breweries">
+  <div class="container">
+    <header class="header">
+      <img class="logo" src="/aa-test-logo.svg" alt="Search Icon" />
+    </header>
+    <div class="search-row">
+      <div class="search-container">
+        <app-search-input
+          [control]="queryCtrl"
+          [isLoading]="uiState() === 'loading'"
+          (clear)="clear()"
+        />
+        @if (showMinLengthHWarning()) {
+          <p class="hint">Type at least 3 characters to search</p>
+        }
+        @if (showDropdown()) {
+          <app-suggestions-list
+            class="suggestions-dropdown"
+            [items]="suggestions()"
+            [showAll]="showAllSuggestions()"
+            (seeAll)="seeAllResults()"
+            (selectItem)="selectItem($event)"
+          />
+        }
+      </div>
+    </div>
+    @if (uiState() === 'error' && errorMsg(); as msg) {
+      <div class="error-state">{{ msg }}</div>
+    }
+    @if (isEmptyResults()) {
+      <div class="empty-state">No breweries found.</div>
+    }
+    @if (selected(); as brewery) {
+      <app-detail-view [brewery]="brewery" (close)="closeDetailView()" />
+    }
+    @if (hasHistory()) {
+      <app-history-list [items]="historyitems()" (removeItem)="removeHistoryItem($event)" />
+    }
+  </div>
+</section>

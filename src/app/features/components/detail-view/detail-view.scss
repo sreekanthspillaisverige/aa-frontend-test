@@ -1,0 +1,57 @@
+@use '../../../shared/styles/tokens' as *;
+
+.card {
+  background: $base-bg-color;
+  border: 1px solid $base-border-color;
+  border-radius: $border-radius;
+  box-shadow: $base-box-shadow;
+  padding: $space-4;
+  color: $base-text-color-dark;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: $space-3;
+  padding-bottom: $space-3;
+  border-bottom: 1px solid $base-border-color;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.close-button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.card-body {
+  display: grid;
+  gap: $space-3;
+  padding-top: $space-3;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: clamp(44px, 14vw, 70px) 1fr;
+  gap: $space-3;
+}
+
+.key {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+}
+
+.value {
+  font-size: 14px;
+  color: $text-color-1;
+  overflow-wrap: anywhere;
+}
