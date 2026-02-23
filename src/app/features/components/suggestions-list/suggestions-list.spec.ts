@@ -31,22 +31,25 @@ describe('SuggestionsList', () => {
 
   it('renders the correct number of suggestions', () => {
     const suggestionElements = fixture.debugElement.queryAll(By.css('button.row'));
+
     expect(suggestionElements.length).toBe(mockSuggestions.length);
   });
 
-  it('emits see all event when "See All Results" button is clicked', () => {
+  it('emits seeAll event when "See all results" button is clicked', () => {
     const spy = vi.fn();
     fixture.componentInstance.seeAll.subscribe(spy);
     const seeAllButton = fixture.debugElement.query(By.css('button.see-all'));
     seeAllButton.triggerEventHandler('click', null);
+
     expect(spy).toHaveBeenCalled();
   });
 
-  it('emits select item event when a suggestion is clicked', () => {
+  it('emits selectItem event when a suggestion is clicked', () => {
     const spy = vi.fn();
     fixture.componentInstance.selectItem.subscribe(spy);
     const suggestionButtons = fixture.debugElement.queryAll(By.css('button.row'));
     suggestionButtons[0].triggerEventHandler('click', null);
+    
     expect(spy).toHaveBeenCalledWith(mockSuggestions[0]);
   });
 });

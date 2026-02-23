@@ -37,33 +37,39 @@ describe('DetailView', () => {
 
   it('renders brewery name', () => {
     const compiled = fixture.nativeElement as HTMLElement;
+
     expect(compiled.querySelector('h2')?.textContent).toContain('Test Brewery');
   });
 
   it('renders brewery type', () => {
     const text = fixture.nativeElement.textContent;
+
     expect(text).toContain('Type: micro');
   });
 
   it('renders formatted address', () => {
     const text = fixture.nativeElement.textContent;
+
     expect(text).toContain('123 Test St, Testville, Test State 12345');
   });
 
   it('renders country', () => {
     const text = fixture.nativeElement.textContent;
+
     expect(text).toContain('Country: Test Country');
+  });
+
+  it('renders phone number', () => {
+    const text = fixture.nativeElement.textContent;
+
+    expect(text).toContain('123-456-7890');
   });
 
   it('renders website link', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const link = compiled.querySelector('a');
-    expect(link?.getAttribute('href')).toBe('http://testbrewery.com');
-  });
 
-  it('renders phone number', () => {
-    const text = fixture.nativeElement.textContent;
-    expect(text).toContain('123-456-7890');
+    expect(link?.getAttribute('href')).toBe('http://testbrewery.com');
   });
 
   it('emits close event when close button is clicked', () => {
@@ -72,7 +78,28 @@ describe('DetailView', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const closeButton = compiled.querySelector('button');
     closeButton?.click();
+
     expect(calls).toBe(1);
+  });
+
+  it('does not render details when brewery input is missing', () => {
+    fixture.componentRef.setInput('brewery', null);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    expect(compiled.querySelector('h2')).toBeNull();
+  });
+
+  it('handles empty brewery type gracefully', () => {
+    fixture.componentRef.setInput('brewery', {
+      ...mockBrewery,
+      brewery_type: '',
+    });
+    fixture.detectChanges();
+
+    const text = fixture.nativeElement.textContent;
+    
+    expect(text).toContain('Type:');
   });
 
   it('handles missing address fields gracefully', () => {
@@ -83,46 +110,10 @@ describe('DetailView', () => {
       state_province: null,
     });
     fixture.detectChanges();
+
     const text = fixture.nativeElement.textContent;
+
     expect(text).toContain('Test Country');
-  });
-
-  it('handles missing website URL gracefully', () => {
-    fixture.componentRef.setInput('brewery', {
-      ...mockBrewery,
-      website_url: null,
-    });
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    const link = compiled.querySelector('a');
-    expect(link).toBeNull();
-  });
-
-  it('does not render details when brewery input is missing', () => {
-    fixture.componentRef.setInput('brewery', null);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h2')).toBeNull();
-  });
-
-  it('handles empty phone number gracefully', () => {
-    fixture.componentRef.setInput('brewery', {
-      ...mockBrewery,
-      phone: '',
-    });
-    fixture.detectChanges();
-    const text = fixture.nativeElement.textContent;
-    expect(text).not.toContain('123-456-7890');
-  });
-
-  it('handles empty brewery type gracefully', () => {
-    fixture.componentRef.setInput('brewery', {
-      ...mockBrewery,
-      brewery_type: '',
-    });
-    fixture.detectChanges();
-    const text = fixture.nativeElement.textContent;
-    expect(text).toContain('Type:');
   });
 
   it('handles empty country gracefully', () => {
@@ -131,7 +122,34 @@ describe('DetailView', () => {
       country: '',
     });
     fixture.detectChanges();
+
     const text = fixture.nativeElement.textContent;
+    
     expect(text).toContain('Country:');
+  });
+
+  it('handles empty phone number gracefully', () => {
+    fixture.componentRef.setInput('brewery', {
+      ...mockBrewery,
+      phone: '',
+    });
+    fixture.detectChanges();
+
+    const text = fixture.nativeElement.textContent;
+
+    expect(text).not.toContain('123-456-7890');
+  });
+
+  it('handles missing website URL gracefully', () => {
+    fixture.componentRef.setInput('brewery', {
+      ...mockBrewery,
+      website_url: null,
+    });
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const link = compiled.querySelector('a');
+
+    expect(link).toBeNull();
   });
 });

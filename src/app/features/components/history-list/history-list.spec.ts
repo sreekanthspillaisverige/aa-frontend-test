@@ -39,6 +39,7 @@ describe('HistoryList', () => {
   it('renders history items', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const items = compiled.querySelectorAll('li');
+
     expect(items.length).toBe(2);
     expect(items[0].textContent).toContain('Test Brewery 1');
     expect(items[1].textContent).toContain('Test Brewery 2');
@@ -50,6 +51,7 @@ describe('HistoryList', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const deleteButtons = compiled.querySelectorAll('button');
     deleteButtons[0].click();
+    
     expect(spy).toHaveBeenCalledWith('1');
   });
 });
