@@ -4,6 +4,7 @@ import { Brewery } from '../../../core/models/brewery.model';
 @Component({
   selector: 'app-suggestions-list',
   imports: [],
+  standalone: true,
   templateUrl: './suggestions-list.html',
   styleUrl: './suggestions-list.scss',
 })

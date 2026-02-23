@@ -4,6 +4,7 @@ import { Brewery } from '../../../core/models/brewery.model';
 @Component({
   selector: 'app-detail-view',
   imports: [],
+  standalone: true,
   templateUrl: './detail-view.html',
   styleUrl: './detail-view.scss',
 })

@@ -5,6 +5,7 @@ import { SearchHistoryItem } from '../../../core/models/search-history-item';
 @Component({
   selector: 'app-history-list',
   imports: [],
+  standalone: true,
   templateUrl: './history-list.html',
   styleUrl: './history-list.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

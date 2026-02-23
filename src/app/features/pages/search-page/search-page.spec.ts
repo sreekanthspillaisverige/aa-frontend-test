@@ -213,4 +213,33 @@ describe('SearchPage', () => {
     const debounce = TestBed.inject(SEARCH_DEBOUNCE_MS);
     expect(debounce).toBe(300);
   });
+
+  it('clicking clear from template calls clear', async () => {
+    const searchInput = fixture.debugElement.query(By.css('app-search-input'));
+    searchInput.triggerEventHandler('clear', null);
+    await flushChanges();
+    expect(component.query()).toBe('');
+  });
+
+  it('template close output clears selection', async () => {
+    component.selected.set(mockBrewery('1', 'Test Brewery'));
+    await flushChanges();
+
+    const detail = fixture.debugElement.query(By.css('app-detail-view'));
+    detail.triggerEventHandler('close', null);
+    await flushChanges();
+
+    expect(component.selected()).toBeNull();
+  });
+
+  it('template removeItem output calls removeHistoryItem', async () => {
+    historyItemsSig.set([{ id: '1', label: 'test', createdAt: new Date().toISOString() }]);
+    await flushChanges();
+
+    const history = fixture.debugElement.query(By.css('app-history-list'));
+    history.triggerEventHandler('removeItem', 'abc');
+    await flushChanges();
+
+    expect(lastHistoryRemoved).toBe('abc');
+  });
 });
